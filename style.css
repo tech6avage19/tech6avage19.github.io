@@ -10,23 +10,46 @@ body {
   background-color: #fafafa;
   color: #333;
   line-height: 1.6;
-  max-width: 800px;
   margin: auto;
-  padding: 2rem 1.5rem;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Layout */
 
 .hero {
-  background-color: white;  /* White background */
-  height: 100vh;
-  padding: 3rem 1.5rem;     /* Spacing inside */
-  text-align: center;       /* Center contents */
-  border-radius: 8px;       /* Optional: slightly rounded corners */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Optional subtle shadow */
-  margin-bottom: 3rem;      /* Space below hero */
-  color: #222;              /* Dark text for contrast */
+  background-color: white;
+  
+  /* Make it full viewport */
+  width: 100vw;         /* full viewport width */
+  height: 100vh;        /* full viewport height */
+  
+  /* Remove any default margin/padding from body and html */
+  margin: 0;
+  padding: 0;
+  
+  /* Flex center content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  /* Remove border-radius and shadows for true edge-to-edge */
+  border-radius: 0;
+  box-shadow: none;
+  
+  /* Set box-sizing just in case */
+  box-sizing: border-box;
+  
+  /* Optional: prevent horizontal scroll caused by 100vw + scrollbars */
+  overflow-x: hidden;
 }
+
 
 .logo {
   max-width: 180px;
