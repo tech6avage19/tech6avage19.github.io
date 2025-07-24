@@ -16,6 +16,7 @@ body {
 }
 
 /* Layout */
+
 .hero {
   background-color: white;  /* White background */
   height: 100vh;
@@ -25,11 +26,6 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Optional subtle shadow */
   margin-bottom: 3rem;      /* Space below hero */
   color: #222;              /* Dark text for contrast */
-}
-
-header {
-  text-align: center;
-  margin-bottom: 3rem;
 }
 
 .logo {
