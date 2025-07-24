@@ -18,6 +18,7 @@ body {
 /* Layout */
 .hero {
   background-color: white;  /* White background */
+  height: 100vh;
   padding: 3rem 1.5rem;     /* Spacing inside */
   text-align: center;       /* Center contents */
   border-radius: 8px;       /* Optional: slightly rounded corners */
