@@ -1,106 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Joshua Birdine</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Joshua Birdine | GitHub Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0d1117;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    a {
+      display: inline-block;
+      text-align: center;
+    }
+
+    img {
+      width: 200px; /* adjust size as needed */
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-
-  <nav>
-    <a href="#" onclick="showSection('about')">About</a>
-    <a href="#" onclick="showSection('projects')">Projects</a>
-    <img src="assets/jb.png" alt="Joshua Birdine Logo" class="logo" />
-    <a href="#" onclick="showSection('services')">Services</a>
-    <a href="#" onclick="showSection('contact')">Contact</a>
-  </nav>
-
-  <main>
-    <section id="about" class="section">
-      
-      <h2>About Me</h2>
-      <p>
-        I'm a cybersecurity consultant and builder focused on creating open, privacy-first technologies.
-        I specialize in secure systems, decentralized tools, and AI-assisted workflows — all designed for autonomy, resilience, and real-world use.
-      </p>
-    </section>
-
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div id="repo-list">
-        <p>Loading projects...</p>
-      </div>
-    </section>
-
-    <section id="services" class="section">
-      <h2>Cybersecurity Services</h2>
-      <ul>
-        <li>WireGuard VPN Setup</li>
-        <li>Phishing Simulation Campaigns</li>
-        <li>Email Security & DNS Hardening</li>
-        <li>Threat Modeling & Privacy Consulting</li>
-      </ul>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Let’s Connect</h2>
-      <p>Email: <a href="mailto:jabloading@gmail.com">jabloading@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/tech6avage19" target="_blank">tech6avage19</a></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Joshua Birdine · joshuabirdine.me</p>
-  </footer>
-
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => {
-        section.style.display = section.id === id ? 'flex' : 'none';
-      });
-    }
-
-    window.onload = () => {
-      showSection('about');
-      loadGitHubRepos();
-    };
-
-    function loadGitHubRepos() {
-      const container = document.getElementById('repo-list');
-      fetch("https://api.github.com/users/tech6avage19/repos")
-        .then(res => res.json())
-        .then(data => {
-          const filtered = data
-            .filter(repo =>
-              !repo.fork &&
-              repo.topics &&
-              repo.topics.includes('feature')
-            )
-            .slice(0, 6);
-
-          if (filtered.length === 0) {
-            container.innerHTML = "<p>No featured projects yet.</p>";
-            return;
-          }
-
-          container.innerHTML = "";
-          filtered.forEach(repo => {
-            const div = document.createElement("div");
-            div.className = "project";
-            div.innerHTML = `
-              <h3><a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a></h3>
-              <p>${repo.description || "No description provided."}</p>
-            `;
-            container.appendChild(div);
-          });
-        })
-        .catch(err => {
-          container.innerHTML = "<p>Failed to load projects.</p>";
-          console.error(err);
-        });
-    }
-  </script>
+  <a href="https://github.com/tech6avage19" target="_blank" title="Visit my GitHub profile">
+    <img src="assets/jb.png" alt="Joshua Birdine Logo">
+  </a>
 </body>
 </html>
