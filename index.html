@@ -57,6 +57,17 @@
     .cta:hover {
       background: #79c0ff;
     }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #e6edf3;
+    }
     .hero {
       display: flex;
       flex-direction: column;
@@ -95,12 +106,49 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #161b22;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero h2 {
+        font-size: 1rem;
+      }
+      .cta {
+        padding: 0.4rem 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <a href="index.html" class="logo">JB</a>
-    <nav>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="blog/index.html">Blog</a>
@@ -121,5 +169,12 @@
     </p>
   </section>
 
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
