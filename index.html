@@ -107,7 +107,20 @@
       font-weight: bold;
     }
 
-    /* Responsive Styles */
+    /* Tablet (iPad) Styles */
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero h2 {
+        font-size: 1.3rem;
+      }
+      nav {
+        gap: 1rem;
+      }
+    }
+
+    /* Mobile Styles */
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -174,6 +187,14 @@
     const nav = document.getElementById('nav');
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('active');
+    });
+
+    // Auto close menu when clicking a link
+    const navLinks = nav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
     });
   </script>
 </body>
