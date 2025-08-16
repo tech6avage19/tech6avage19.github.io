@@ -66,6 +66,99 @@
     .about-text p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
     .about-image img { width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
 
+    .projects {
+  padding: 4rem 2rem;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.projects h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.projects-controls {
+  margin-bottom: 2rem;
+}
+
+#search {
+  padding: 0.5rem;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  margin-top: 1rem;
+}
+
+.tag-btn {
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 0.4rem 0.8rem;
+  margin: 0.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tag-btn:hover,
+.tag-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+.project-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #222;
+}
+
+.project-content {
+  padding: 1rem;
+  text-align: left;
+}
+
+.project-content h3 { margin-bottom: 0.5rem; }
+.project-content p { color: #ccc; margin-bottom: 1rem; }
+.project-content a { color: #60a5fa; font-weight: bold; text-decoration: none; }
+
+.project-card .tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  background: #222;
+  color: #60a5fa;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
     .fade-slide { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
     .fade-slide.show { opacity: 1; transform: translateY(0); }
 
@@ -127,6 +220,45 @@
     </div>
   </section>
 
+  <!-- Projects -->
+
+  <section id="projects" class="projects fade-slide">
+  <h2>Projects</h2>
+  <div class="projects-controls">
+    <input type="text" id="search" placeholder="Search projects...">
+    <div class="tags">
+      <button class="tag-btn active" data-tag="all">All</button>
+      <button class="tag-btn" data-tag="Networking">Networking</button>
+      <button class="tag-btn" data-tag="Foundations">Foundations</button>
+      <button class="tag-btn" data-tag="Endpoint">Endpoint</button>
+    </div>
+  </div>
+
+  <div id="projects-grid" class="projects-grid">
+    <!-- Example Card -->
+    <div class="project-card fade-slide" data-tags="Networking Foundations">
+      <img src="images/vpn-project.png" alt="VPN Project Screenshot" class="project-img">
+      <div class="project-content">
+        <h3>Secure VPN Setup</h3>
+        <p>Configured and deployed a VPN for secure remote access.</p>
+        <span class="tag">Networking</span>
+        <span class="tag">Foundations</span>
+        <a href="https://github.com/yourusername/vpn-setup" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card fade-slide" data-tags="Endpoint">
+      <img src="images/endpoint-protection.png" alt="Endpoint Protection Project" class="project-img">
+      <div class="project-content">
+        <h3>Endpoint Protection</h3>
+        <p>Implemented endpoint monitoring and response systems.</p>
+        <span class="tag">Endpoint</span>
+        <a href="https://github.com/yourusername/endpoint-project" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
   <!-- Scripts -->
   <script>
     const header = document.querySelector("header");
@@ -148,6 +280,38 @@
     }, { threshold: 0.2 });
 
     faders.forEach(el => observer.observe(el));
+
+    // Search + Tag filter
+function filterProjects() {
+  const searchInput = document.getElementById("search").value.toLowerCase();
+  const activeTag = document.querySelector(".tag-btn.active").dataset.tag;
+  const cards = document.querySelectorAll(".project-card");
+
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    const tags = card.dataset.tags.toLowerCase();
+
+    const matchesSearch = text.includes(searchInput);
+    const matchesTag = activeTag === "all" || tags.includes(activeTag.toLowerCase());
+
+    if (matchesSearch && matchesTag) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+// Event listeners
+document.getElementById("search").addEventListener("input", filterProjects);
+
+document.querySelectorAll(".tag-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tag-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    filterProjects();
+  });
+});
   </script>
 </body>
 </html>
