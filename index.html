@@ -11,6 +11,7 @@
       background-color: #000;
       color: #fff;
     }
+    
     header {
   position: fixed;
   top: 0;
@@ -45,14 +46,15 @@
       text-decoration: none;
       font-weight: bold;
     }
-    .hero {
-      height: 75vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+   .hero {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: flex-start;   /* align text to the left */
+  padding-left: 2rem;        /* match header spacing */
+  text-align: left;          /* left-align text */
+}
     .hero h1 {
       font-size: 3rem;
       margin: 0;
