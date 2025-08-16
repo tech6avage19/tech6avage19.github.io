@@ -123,9 +123,16 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   display: flex;
   flex-direction: column;
+  opacity: 1;
+}
+
+.project-card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 .project-card:hover {
@@ -309,6 +316,21 @@ function filterProjects() {
   const searchInput = document.getElementById("search").value.toLowerCase();
   const activeTag = document.querySelector(".tag-btn.active").dataset.tag;
   const cards = document.querySelectorAll(".project-card");
+
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    const tags = card.dataset.tags.toLowerCase();
+
+    const matchesSearch = text.includes(searchInput);
+    const matchesTag = activeTag === "all" || tags.includes(activeTag.toLowerCase());
+
+    if (matchesSearch && matchesTag) {
+      card.classList.remove("hidden");
+    } else {
+      card.classList.add("hidden");
+    }
+  });
+}
 
   // Fallback image if a project image is missing or fails to load
 document.querySelectorAll(".project-img").forEach(img => {
