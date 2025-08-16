@@ -52,13 +52,60 @@
     .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
     .hamburger span { width: 25px; height: 3px; background: #fff; transition: 0.3s; }
 
-    .hero {
-      height: 80vh; display: flex; align-items: center; justify-content: flex-start;
-      padding: 0 3rem; background: #000;
-    }
-    .hero-content { max-width: 600px; text-align: left; }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-    .hero h2 { font-size: 1.5rem; font-weight: 300; color: #ccc; }
+    #hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80vh;
+  padding: 0 10%;
+  background: #000;
+  gap: 40px;
+}
+
+.hero-content {
+  flex: 1;
+  text-align: left;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-content h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.hero-content .btn {
+  background: #00c3ff;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.hero-content .btn:hover {
+  background: #008ecf;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
 
     .about { background: #111; padding: 6rem 2rem; display: flex; justify-content: center; }
     .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1000px; align-items: center; }
@@ -247,7 +294,23 @@ footer .socials a:hover {
   color: #008ecf;
 }
     
-    @media (max-width:1024px){ header { padding:1rem 2rem; } }
+    @media (max-width:1024px){ header { padding:1rem 2rem; }
+                             #hero {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 40px 5%;
+  }
+
+  .hero-image {
+    margin-top: 20px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+}
+                             }
     @media (max-width:768px){
       nav { position:absolute; top:70px; right:0; background:rgba(0,0,0,0.95);
         flex-direction:column; gap:1.5rem; padding:2rem; transform:translateX(100%);
@@ -279,12 +342,17 @@ footer .socials a:hover {
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="hero">
-    <div class="hero-content fade-slide">
-      <h1>Joshua Birdine</h1>
-      <h2>Cybersecurity Consultant / SOC Analyst</h2>
-    </div>
-  </section>
+ <section id="hero">
+  <div class="hero-content">
+    <h1>Joshua Birdine</h1>
+    <h2>Cybersecurity Consultant / SOC Analyst</h2>
+    <a href="#contact" class="btn">Hire Me</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="images/hero-image.png" alt="Joshua Birdine - Cybersecurity" />
+  </div>
+</section>
 
   <!-- About -->
   <section id="about" class="about">
