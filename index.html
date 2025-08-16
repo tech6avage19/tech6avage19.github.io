@@ -138,6 +138,7 @@
   height: 180px;
   object-fit: cover;
   border-bottom: 1px solid #222;
+  background: #111;
 }
 
 .project-content {
@@ -308,6 +309,13 @@ function filterProjects() {
   const searchInput = document.getElementById("search").value.toLowerCase();
   const activeTag = document.querySelector(".tag-btn.active").dataset.tag;
   const cards = document.querySelectorAll(".project-card");
+
+  // Fallback image if a project image is missing or fails to load
+document.querySelectorAll(".project-img").forEach(img => {
+  img.addEventListener("error", () => {
+    img.src = "images/placeholder.png"; // fallback image
+  });
+});
 
   cards.forEach(card => {
     const text = card.innerText.toLowerCase();
