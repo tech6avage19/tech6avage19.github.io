@@ -107,18 +107,28 @@
       font-weight: bold;
     }
 
-    /* Tablet (iPad) Styles */
-    @media (max-width: 1024px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero h2 {
-        font-size: 1.3rem;
-      }
-      nav {
-        gap: 1rem;
-      }
-    }
+    /* Tablet (portrait & landscape) */
+@media (max-width: 1024px) {
+  nav {
+    display: none; /* hide by default, use hamburger */
+    flex-direction: column;
+    background: #161b22;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  nav.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  header {
+    padding: 1rem; /* reduce padding so logo + menu fit */
+  }
+}
 
     /* Mobile Styles */
     @media (max-width: 768px) {
