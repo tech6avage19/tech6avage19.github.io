@@ -170,6 +170,83 @@
     .fade-slide { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
     .fade-slide.show { opacity: 1; transform: translateY(0); }
 
+
+  /* Contact */
+#contact {
+  padding: 80px 10%;
+  background: #0d0d0d;
+  text-align: center;
+}
+
+#contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid #00c3ff;
+}
+
+.contact-form .btn {
+  background: #00c3ff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-form .btn:hover {
+  background: #008ecf;
+}
+
+/* Footer */
+footer {
+  background: #000;
+  padding: 20px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+footer .socials {
+  display: flex;
+  gap: 20px;
+}
+
+footer .socials a {
+  color: #00c3ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer .socials a:hover {
+  color: #008ecf;
+}
+    
     @media (max-width:1024px){ header { padding:1rem 2rem; } }
     @media (max-width:768px){
       nav { position:absolute; top:70px; right:0; background:rgba(0,0,0,0.95);
@@ -288,7 +365,36 @@
     </div>
   </div>
 </section>
+  <!-- Contact -->
 
+  <section id="contact" class="fade-slide">
+  <h2>Contact Me</h2>
+  <p>If you’d like to work together or just chat about cybersecurity, feel free to reach out!</p>
+
+  <form class="contact-form" action="https://formspree.io/f/xnnzrkrj" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="_replyto" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
+
+  <!-- Footer -->
+
+  <footer>
+  <p>© 2025 Joshua Birdine. All rights reserved.</p>
+  <div class="socials">
+    <a href="https://github.com/tech6avage19" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/joshuabirdine" target="_blank">LinkedIn</a>
+    <a href="https://twitter.com/tech6avage19" target="_blank">X / Twitter</a>
+    <a href="https://www.youtube.com/tech6avage19" target="_blank">YouTube</a>
+    <a href="https://medium.com/joshuabirdine" target="_blank">Medium</a>
+    <a href="https://substack.com/tech6avage19" target="_blank">Substack</a>
+    <a href="https://instagram.com/tech6avage19" target="_blank">Instagram</a>
+    <a href="https://tiktok.com/tech6avage19" target="_blank">TikTok</a>
+  </div>
+</footer>
+  
   <!-- Scripts -->
 <script>
 // Smooth scroll for anchor links
@@ -366,6 +472,28 @@ document.querySelectorAll(".project-img").forEach(img => {
   img.addEventListener("error", () => {
     img.src = "images/placeholder.png"; // your fallback
   });
+});
+
+  // Success Message
+
+const form = document.querySelector(".contact-form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if (response.ok) {
+    alert("✅ Thanks! Your message has been sent.");
+    form.reset();
+  } else {
+    alert("❌ Oops, something went wrong. Please try again.");
+  }
 });
 </script>
 </body>
